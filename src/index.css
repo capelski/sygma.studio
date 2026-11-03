@@ -1,0 +1,109 @@
+:root {
+  --bg: #fff;
+  --fg: #000;
+  --text-size: 20px;
+  --gutter: 64px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: var(--text-size);
+  line-height: 1.3;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1 {
+  margin: 0;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.page {
+  position: relative;
+  min-height: 100vh;
+  padding: var(--gutter);
+}
+
+.header {
+  position: absolute;
+  top: var(--gutter);
+  right: var(--gutter);
+}
+
+.logo b {
+  font-weight: 700;
+}
+
+.plus {
+  margin-bottom: 1.6em;
+}
+
+.menu,
+.section-title {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-transform: uppercase;
+}
+
+.menu a:hover,
+.menu a:focus-visible {
+  text-decoration: underline;
+}
+
+p {
+  margin: 0;
+}
+
+.office {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: end;
+  gap: var(--gutter);
+  margin-top: 4em;
+}
+
+.office-photo {
+  display: block;
+  width: 45%;
+  height: auto;
+}
+
+.office-text {
+  max-width: 27em;
+  line-height: 1.6;
+}
+
+.office-text b {
+  font-weight: 700;
+}
+
+@media (max-width: 600px) {
+  :root {
+    --gutter: 24px;
+  }
+
+  .office {
+    grid-template-columns: 1fr;
+    margin-top: 2em;
+  }
+
+  .office-photo {
+    width: 100%;
+  }
+}
