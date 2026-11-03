@@ -1,4 +1,5 @@
 import { Link, Route, Routes } from 'react-router-dom'
+import Contact from './pages/Contact'
 import Home from './pages/Home'
 import Office from './pages/Office'
 import Section from './pages/Section'
@@ -17,8 +18,9 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/office" element={<Office />} />
+          <Route path="/contact" element={<Contact />} />
           {sections
-            .filter((s) => s.path !== '/office')
+            .filter((s) => s.path !== '/office' && s.path !== '/contact')
             .map((s) => (
               <Route key={s.path} path={s.path} element={<Section title={s.label} />} />
             ))}
