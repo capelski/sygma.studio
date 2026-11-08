@@ -136,9 +136,141 @@ p {
   font-size: var(--text-size);
 }
 
+/* PROJECTS grid */
+
+.projects {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5em var(--gutter);
+  margin: 4em 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+}
+
+.project-cover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: clamp(220px, 26vw, 420px);
+}
+
+.project-cover img {
+  display: block;
+  max-width: 80%;
+  max-height: 100%;
+  transition: opacity 0.2s;
+}
+
+.project-card:hover img,
+.project-card:focus-visible img {
+  opacity: 0.8;
+}
+
+.project-caption {
+  font-size: 13px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* Project page */
+
+.section-title a:hover,
+.section-title a:focus-visible {
+  text-decoration: underline;
+}
+
+.viewer {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--gutter);
+  margin-top: 4em;
+}
+
+.viewer-nav {
+  padding: 12px;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.viewer-nav img {
+  display: block;
+  width: 24px;
+  height: auto;
+}
+
+.viewer-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: min(60vh, 640px);
+}
+
+.viewer-stage img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.viewer-caption {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  margin-top: 2em;
+  font-size: 13px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .projects {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 600px) {
   :root {
     --gutter: 24px;
+  }
+
+  .projects {
+    grid-template-columns: 1fr;
+    gap: 3em;
+    margin-top: 2em;
+  }
+
+  .project-cover {
+    height: auto;
+  }
+
+  .project-cover img {
+    max-height: 70vh;
+  }
+
+  .viewer {
+    gap: 0;
+    margin-top: 2em;
+  }
+
+  .viewer-nav {
+    padding: 8px;
+  }
+
+  .viewer-nav img {
+    width: 16px;
+  }
+
+  .viewer-stage {
+    height: 55vh;
   }
 
   .office {
