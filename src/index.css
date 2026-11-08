@@ -53,7 +53,7 @@ h1 {
   margin-bottom: 1.6em;
 }
 
-.menu,
+.home,
 .section-title {
   margin: 0;
   padding: 0;
@@ -61,8 +61,8 @@ h1 {
   text-transform: uppercase;
 }
 
-.menu a:hover,
-.menu a:focus-visible {
+.home a:hover,
+.home a:focus-visible {
   text-decoration: underline;
 }
 
@@ -297,5 +297,124 @@ p {
 
   .contact-team::before {
     left: 0;
+  }
+}
+
+/* Home intro: a plus that spins into the dot of "sygma.studio" */
+
+.intro {
+  --logo-size: 32px;
+  --dot: calc(var(--logo-size) * 0.12);
+  --len: 44px;
+  --thick: 6px;
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  font-size: var(--logo-size);
+}
+
+.intro-plus {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 72px;
+  height: 72px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  transform: translate(-50%, -50%) rotate(0deg);
+  transition: transform 0.9s cubic-bezier(0.6, 0, 0.3, 1);
+}
+
+.intro-plus::before,
+.intro-plus::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: var(--fg);
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.9s cubic-bezier(0.6, 0, 0.3, 1),
+    height 0.9s cubic-bezier(0.6, 0, 0.3, 1),
+    border-radius 0.9s;
+}
+
+.intro-plus::before {
+  width: var(--len);
+  height: var(--thick);
+}
+
+.intro-plus::after {
+  width: var(--thick);
+  height: var(--len);
+}
+
+.intro:not(.is-open) .intro-plus:hover,
+.intro:not(.is-open) .intro-plus:focus-visible {
+  --thick: 2px;
+}
+
+.intro:not(.is-open) .intro-plus::before,
+.intro:not(.is-open) .intro-plus::after {
+  transition-duration: 0.3s;
+}
+
+.intro-plus:focus-visible {
+  outline: none;
+}
+
+.is-open .intro-plus {
+  --len: var(--dot);
+  --thick: var(--dot);
+  cursor: default;
+  transform: translate(-50%, -50%) rotate(360deg);
+}
+
+.is-open .intro-plus::before,
+.is-open .intro-plus::after {
+  border-radius: 50%;
+}
+
+/* The text baseline sits on the bottom of the dot (0.8465em = Arial baseline at line-height 1). */
+.intro-logo {
+  position: absolute;
+  top: calc(50% + var(--dot) / 2 - 0.8465em);
+  left: 0;
+  right: 0;
+  height: 1em;
+  line-height: 1;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s 0.8s;
+}
+
+.intro-logo b {
+  font-weight: 700;
+}
+
+/* Half the advance width of an Arial "." on each side of the dot. */
+.intro-logo-start {
+  position: absolute;
+  right: calc(50% + 0.139em);
+}
+
+.intro-logo-end {
+  position: absolute;
+  left: calc(50% + 0.139em);
+}
+
+.is-open .intro-logo {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro *,
+  .intro-plus::before,
+  .intro-plus::after {
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
   }
 }
